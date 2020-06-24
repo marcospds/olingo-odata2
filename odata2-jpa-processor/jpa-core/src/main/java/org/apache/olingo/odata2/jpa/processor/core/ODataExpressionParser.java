@@ -21,6 +21,7 @@ package org.apache.olingo.odata2.jpa.processor.core;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -545,7 +546,22 @@ public class ODataExpressionParser {
       } catch (EdmSimpleTypeException e) {
         throw ODataJPARuntimeException.throwException(ODataJPARuntimeException.GENERAL.addContent(e.getMessage()), e);
       }
+      // TODO
+    } else if (EdmSimpleTypeKind.ZonedDateTime.getEdmSimpleTypeInstance().isCompatible(edmSimpleType)) {
+      try {
+    	  ZonedDateTime zoneddatetime =
+            (ZonedDateTime) edmSimpleType.valueOfString(uriLiteral, EdmLiteralKind.DEFAULT, null, edmSimpleType
+                .getDefaultType());
 
+        if (!positionalParameters.containsKey(index)) {
+          positionalParameters.put(index, zoneddatetime);
+        }
+        uriLiteral = "?" + index;
+
+      } catch (EdmSimpleTypeException e) {
+        throw ODataJPARuntimeException.throwException(ODataJPARuntimeException.GENERAL.addContent(e.getMessage()), e);
+      }
+   
     } else if (EdmSimpleTypeKind.Time.getEdmSimpleTypeInstance().isCompatible(edmSimpleType)) {
       try {
         Calendar time =

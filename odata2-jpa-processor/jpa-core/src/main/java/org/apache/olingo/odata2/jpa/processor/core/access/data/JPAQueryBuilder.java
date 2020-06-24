@@ -528,7 +528,7 @@ public class JPAQueryBuilder {
     final String queriedEntity = jpqlQuery.substring(pos, lastpos);
     for (EntityType<?> type : types) {
       if(queriedEntity.equals(type.getName())) {
-        Set<Attribute<?, ?>> attributes = (Set<Attribute<?, ?>>) type.getAttributes();
+        Set<Attribute<?, ?>> attributes = (Set<Attribute<?, ?>>)(Object) type.getAttributes();
         for (Attribute<?, ?> attribute : attributes) {
           if(jpqlQuery.contains(attribute.getName()) &&
             attribute.getPersistentAttributeType() == Attribute.PersistentAttributeType.EMBEDDED) {

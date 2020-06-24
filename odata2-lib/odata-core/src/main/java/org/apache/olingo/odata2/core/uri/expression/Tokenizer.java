@@ -41,7 +41,7 @@ public class Tokenizer {
               "|trim|concat|length|year|mounth|day|hour|minute|second|round|ceiling|floor)( *)\\(");
   private static final Pattern AND_SUB1 = Pattern.compile("^(add|sub|mul|div|mod|not) ");
   private static final Pattern AND_SUB = Pattern.compile("^(and|or|eq|ne|lt|gt|le|ge) ");
-  private static final Pattern prefix = Pattern.compile("^(X|binary|guid|datetime|datetimeoffset|time)'");
+  private static final Pattern prefix = Pattern.compile("^(X|binary|guid|datetime|zoneddatetime|datetimeoffset|time)'");
   private boolean flagIncludeWhitespace = false;
   private EdmSimpleTypeFacade typeDectector = null;
 

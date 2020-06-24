@@ -647,6 +647,7 @@ public class FilterParserImpl implements FilterParser {
     EdmSimpleType guid = EdmSimpleTypeFacadeImpl.getEdmSimpleType(EdmSimpleTypeKind.Guid);
     EdmSimpleType binary = EdmSimpleTypeFacadeImpl.getEdmSimpleType(EdmSimpleTypeKind.Binary);
     EdmSimpleType null_ = EdmSimpleTypeFacadeImpl.getEdmSimpleType(EdmSimpleTypeKind.Null);
+    EdmSimpleType zoneddatetime_ = EdmSimpleTypeFacadeImpl.getEdmSimpleType(EdmSimpleTypeKind.ZonedDateTime);
 
     // ---Member member access---
     lAvailableBinaryOperators.put("/", new InfoBinaryOperator(BinaryOperator.PROPERTY_ACCESS, "Primary", 100,
@@ -740,6 +741,9 @@ public class FilterParserImpl implements FilterParser {
     combination.add(new ParameterSet(boolean_, double_, double_));
     combination.add(new ParameterSet(boolean_, decimal, decimal));
     combination.add(new ParameterSet(boolean_, binary, binary));
+    
+    // TODO
+    combination.add(new ParameterSet(boolean_, zoneddatetime_, zoneddatetime_));
 
     combination.add(new ParameterSet(boolean_, string, null_));
     combination.add(new ParameterSet(boolean_, null_, string));
